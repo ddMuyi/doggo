@@ -1,0 +1,55 @@
+@import './base.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  padding:0px 20px;
+  display: block;
+  margin:0 auto;
+}
+
+@media (min-width: 640px){
+  #app {
+    padding:0px 24px;
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  #app {
+      max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  #app {
+      max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px){
+  #app {
+    padding:0px 40px;
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px){
+  #app {
+    max-width: 1536px;
+    padding:0px 40px;
+  }
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  
+}
