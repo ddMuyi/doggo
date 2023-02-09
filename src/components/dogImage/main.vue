@@ -1,22 +1,52 @@
 <script setup lang="ts">
-import { useStore } from 'vuex';
+// import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+import { computed, onMounted } from 'vue';
+import useIntersectonObserver from '../../composables/useIntersectionObserver'
+
 
 const router = useRouter()
-const store = useStore()
 
-defineProps<{src:string}>()
+const props = defineProps<{src:string, dog:string}>()
 
 const showBreed = (url:string) =>{
   let breed =url.split("/")[4]
   router.push(`/breed/${breed}`)
 }
 
+const intersected = ref(false)
+const target = ref<null | HTMLElement>(null)
+
+const srcImage = computed(()=>intersected.value ? props.src : "")
+
+function intersectCallback(entry: IntersectionObserverEntry) {
+
+      const image = entry;
+      if (image.isIntersecting) {
+        intersected.value = true;
+      }
+}
+
+onMounted(()=>{
+    // observer = new IntersectionObserver(entries => {
+    //   const image = entries[0];
+    //   if (image.isIntersecting) {
+    //     intersected.value = true;
+    //     observer?.disconnect();
+    //   }
+    // });
+
+    // observer?.observe()
+    useIntersectonObserver.observeElemement(target.value, intersectCallback)
+    
+})
+
 </script>
 
 <template>
-    <div v-for="dog in store.state.dogs" class="image_cont">
-        <img @click="showBreed(dog)" :src="dog" class="img" lazyload/>
+    <div class="image_cont" ref="target">
+        <img @click="showBreed(src)" :src="srcImage" class="img"/>
     </div>
 </template>
 
