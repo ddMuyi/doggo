@@ -8,7 +8,7 @@ import useIntersectonObserver from '../../composables/useIntersectionObserver'
 
 const router = useRouter()
 
-const props = defineProps<{src:string, dog:string}>()
+const props = defineProps<{src:string, dog:string, index:number}>()
 
 const showBreed = (url:string) =>{
   let breed =url.split("/")[4]
@@ -28,25 +28,15 @@ function intersectCallback(entry: IntersectionObserverEntry) {
       }
 }
 
-onMounted(()=>{
-    // observer = new IntersectionObserver(entries => {
-    //   const image = entries[0];
-    //   if (image.isIntersecting) {
-    //     intersected.value = true;
-    //     observer?.disconnect();
-    //   }
-    // });
-
-    // observer?.observe()
-    useIntersectonObserver.observeElemement(target.value, intersectCallback)
-    
-})
+onMounted(()=>useIntersectonObserver.observeElemement(target.value, intersectCallback))
 
 </script>
 
 <template>
     <div class="image_cont" ref="target">
+        
         <img @click="showBreed(src)" :src="srcImage" class="img"/>
+        <div class="index">{{ props.index + 1 }}</div>
     </div>
 </template>
 
@@ -57,6 +47,7 @@ onMounted(()=>{
   border-radius: 12px;
   background-color: white;
   transition: 0.2s ease;
+  position: relative;
 }
 
 @media (min-width: 640px) {
@@ -93,5 +84,14 @@ onMounted(()=>{
   height:300px;
   border-radius: 12px;
   object-fit: cover;
+}
+
+.index {
+    position:absolute;
+    top:0px;
+    left:0px;
+    z-index:999;
+    font-weight: 700;
+    font-size: 24px;
 }
 </style>

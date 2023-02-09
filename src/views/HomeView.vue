@@ -8,14 +8,23 @@ const store = useStore()
 onMounted(()=>{
   store.dispatch("fetchDogs")
   store.dispatch("fetchDogs")
+
+  window.onscroll = () => {
+    let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+    if (bottomOfWindow) {
+      store.dispatch("fetchDogs")
+    }
+  };
 })
 
 </script>
 
 <template>
     <div class="images_cont">
-      <DogImage v-for="dog in store.state.dogs" :key="dog" :src="dog"/>
+      <DogImage v-for="(dog, index) in store.state.dogs" :key="dog" :src="dog" :index="index"/>
     </div>
+    <div v-if="store.state.loadingDogs">Loading Images</div>
 </template>
 
 <style scoped>

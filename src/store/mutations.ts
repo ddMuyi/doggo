@@ -4,6 +4,10 @@ export const SET_DOGS = (state:State, dogs:[])=>{
     state.dogs = [...dogs, ...state.dogs]
 }
 
+export const SET_LOADING_DOGS = (state:State, payload:boolean)=>{
+    state.loadingDogs = payload
+}
+
 export const SET_DOG_IMAGE = (state:State, image:string)=>{
     state.dog.image = image
 }

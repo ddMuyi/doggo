@@ -5,7 +5,8 @@ export default {
         subBreed:[],
         loadingImage:false,
         loadingSubBreed:false
-    }
+    },
+    loadingDogs:false
 }
 
 export interface State{
@@ -15,5 +16,6 @@ export interface State{
         subBreed:Array<string>,
         loadingImage:boolean,
         loadingSubBreed:boolean
-    }
+    },
+    loadingDogs:boolean
 }
