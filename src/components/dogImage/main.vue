@@ -11,7 +11,7 @@ const router = useRouter()
 const props = defineProps<{src:string, index:number}>()
 
 const showBreed = (url:string) =>{
-  let breedArr =url.split("/")
+  let breedArr =url.split("/") //to get the name of the breed from the URL
   let breed = breedArr[4]
   router.push(`/breed/${breed}`)
 }
@@ -21,8 +21,8 @@ const target = ref<HTMLElement | null>(null)
 
 const srcImage = computed(()=>intersected.value ? props.src : "")
 
+// Check if an element is in display
 function intersectCallback(entry: IntersectionObserverEntry) {
-
       const image = entry;
       if (image.isIntersecting) {
         intersected.value = true;

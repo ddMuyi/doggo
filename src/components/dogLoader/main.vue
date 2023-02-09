@@ -1,4 +1,4 @@
-<template>
+<template> 
     <div class="loader_cont">
         <div class="loader">
             <lottie-player 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { ref, computed } from 'vue';
+    import { ref} from 'vue';
     import { useStore } from 'vuex';
 
     const breed = ref("")
@@ -11,6 +11,7 @@
     }
 
     const reset = ()=>{
+        // This clears the data in the vuex store before making another request
         store.dispatch("clearDogs")
         breed.value = ""
         store.dispatch("fetchDogs")
