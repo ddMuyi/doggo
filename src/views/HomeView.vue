@@ -8,8 +8,10 @@ import DogLoader from '../components/dogLoader/main.vue'
 const store = useStore()
 
 onMounted(()=>{
-  store.dispatch("fetchDogs")
-  store.dispatch("fetchDogs")
+  if(store.state.dogs.length === 0) {
+    store.dispatch("fetchDogs")
+    store.dispatch("fetchDogs")
+  }
 })
 
     window.addEventListener("scroll", ()=> {
@@ -55,6 +57,7 @@ onMounted(()=>{
   gap:24px;
   width:100%;
   margin-top:24px;
+  overflow-x: hidden;
 }
 @media (min-width: 640px) {
     .images_cont {
