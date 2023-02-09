@@ -34,8 +34,13 @@ onMounted(()=>useIntersectonObserver.observeElemement(target.value, intersectCal
 
 <template>
     <div class="image_cont" ref="target">
-        <img @click="showBreed(src)" :src="srcImage" class="img"/>
+        <img @click="showBreed(src)" 
+            :src="srcImage" 
+            class="img" 
+            lazy="loading"
+        />
         <div class="index">{{ props.index + 1 }}</div>
+        
         <p class="name">{{ src.split("/")[4] }}</p>
     </div>
 </template>

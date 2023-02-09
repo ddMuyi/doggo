@@ -31,6 +31,13 @@
     .search_cont {
         display: flex;
         gap:24px;
+        position: sticky;
+        top:100px;
+        left:0;
+        z-index: 1000;
+        background-color: #FFFFFF;
+        padding-bottom:12px;
+        flex-wrap: wrap;
     }
     .input {
         height:40px;
@@ -38,6 +45,8 @@
         outline: none;
         border:1px solid #CECECE;
         width:300px;
+        padding-left: 12px;
+        font-size: 18px;
     }
     .search{
         padding:0px 16px;

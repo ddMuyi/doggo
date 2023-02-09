@@ -32,7 +32,13 @@ onMounted(()=>{
     <SearchComponent/>
 
     <div class="images_cont">
-      <DogImage v-for="(dog, index) in store.state.dogs" :key="dog" :src="dog" :index="index"/>
+        <p v-if="store.state.dogs.length == 0 && !store.state.loadingDogs">
+            The breed you searched doesn't exist on our Database
+        </p>
+        
+      <DogImage v-else v-for="(dog, index) in store.state.dogs" :key="dog" :src="dog" :index="index"/>
+
+        
     </div>
 
     <div v-if="store.state.loadingDogs">

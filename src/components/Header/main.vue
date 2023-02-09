@@ -20,6 +20,11 @@
         height:100px;
         align-items: center;
         justify-content: space-between;
+        position: sticky;
+        top:0;
+        left:0;
+        z-index: 1000;
+        background-color: #FFFFFF;
     }
 
     .header img {
