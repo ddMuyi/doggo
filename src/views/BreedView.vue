@@ -10,10 +10,11 @@
 
     onMounted(()=>{
         let currBreed = route.params.breed
+        
         let subBreed;
 
         if(currBreed.includes("-")){
-            let breedArr = currBreed.split("-")
+            let breedArr = currBreed.toString().split("-")
             subBreed = `${breedArr[0]}/${breedArr[1]}`
             currBreed = breedArr[0]
         }

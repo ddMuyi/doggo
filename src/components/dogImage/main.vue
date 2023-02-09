@@ -11,12 +11,13 @@ const router = useRouter()
 const props = defineProps<{src:string, index:number}>()
 
 const showBreed = (url:string) =>{
-  let breed =url.split("/")[4]
+  let breedArr =url.split("/")
+  let breed = breedArr[4]
   router.push(`/breed/${breed}`)
 }
 
 const intersected = ref(false)
-const target = ref<null | HTMLElement>(null)
+const target = ref<HTMLElement | null>(null)
 
 const srcImage = computed(()=>intersected.value ? props.src : "")
 
@@ -28,16 +29,21 @@ function intersectCallback(entry: IntersectionObserverEntry) {
       }
 }
 
-onMounted(()=>useIntersectonObserver.observeElemement(target.value, intersectCallback))
+onMounted(()=>{
+    if(target.value !== null) {
+        useIntersectonObserver.observeElemement(target.value, intersectCallback)
+    }
+})
 
 </script>
 
 <template>
-    <div class="image_cont" ref="target">
+    <div class="image_cont" ref="target" id="cont">
         <img @click="showBreed(src)" 
             :src="srcImage" 
             class="img" 
             lazy="loading"
+            
         />
         <div class="index">{{ props.index + 1 }}</div>
         

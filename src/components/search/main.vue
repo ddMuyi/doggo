@@ -5,10 +5,10 @@
     const breed = ref("")
     const store = useStore()
 
-    const submit = computed(()=>{
+    const submit = ()=>{
         store.dispatch("clearDogs")
         store.dispatch("fetchDogs", breed.value)
-    })
+    }
 
     const reset = ()=>{
         store.dispatch("clearDogs")
