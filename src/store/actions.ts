@@ -1,9 +1,19 @@
 import axios from 'axios'
 
-export const fetchDogs = async ({commit}: { commit: Function }) =>{
+export const fetchDogs = async ({commit}: { commit: Function }, payload:string) =>{
     try{
+        if(payload) {
+            commit('SET_SEARCH_DOG', payload)
+        }
+        else{
+            commit('SET_SEARCH_DOG', "")
+        }
+
         commit('SET_LOADING_DOGS', true)
-        let response = await axios.get("https://dog.ceo/api/breeds/image/random/50")
+
+        let url = payload ? `https://dog.ceo/api/breed/${payload}/images` : `https://dog.ceo/api/breeds/image/random/50`
+
+        let response = await axios.get(url)
         let data = await response.data
 
         commit('SET_DOGS', data.message)
@@ -48,4 +58,7 @@ export const fetchDogImage = async ({commit}: { commit: Function }, payload:stri
     }
 }
 
+export const clearDogs = ({commit}: { commit: Function }) =>{
+    commit('CLEAR_DOGS')
+}
 

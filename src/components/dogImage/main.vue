@@ -8,7 +8,7 @@ import useIntersectonObserver from '../../composables/useIntersectionObserver'
 
 const router = useRouter()
 
-const props = defineProps<{src:string, dog:string, index:number}>()
+const props = defineProps<{src:string, index:number}>()
 
 const showBreed = (url:string) =>{
   let breed =url.split("/")[4]
@@ -34,9 +34,9 @@ onMounted(()=>useIntersectonObserver.observeElemement(target.value, intersectCal
 
 <template>
     <div class="image_cont" ref="target">
-        
         <img @click="showBreed(src)" :src="srcImage" class="img"/>
         <div class="index">{{ props.index + 1 }}</div>
+        <p class="name">{{ src.split("/")[4] }}</p>
     </div>
 </template>
 
@@ -48,6 +48,7 @@ onMounted(()=>useIntersectonObserver.observeElemement(target.value, intersectCal
   background-color: white;
   transition: 0.2s ease;
   position: relative;
+  border:1px solid #CECECE;
 }
 
 @media (min-width: 640px) {
@@ -83,6 +84,8 @@ onMounted(()=>useIntersectonObserver.observeElemement(target.value, intersectCal
   width: 100%;
   height:300px;
   border-radius: 12px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   object-fit: cover;
 }
 
@@ -93,5 +96,12 @@ onMounted(()=>useIntersectonObserver.observeElemement(target.value, intersectCal
     z-index:999;
     font-weight: 700;
     font-size: 24px;
+}
+
+.name {
+    padding:4px 0px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
 }
 </style>

@@ -2,29 +2,42 @@
 import { onMounted } from "vue";
 import { useStore } from "vuex";
 import DogImage from '../components/dogImage/main.vue'
+import SearchComponent from '../components/search/main.vue'
+import DogLoader from '../components/dogLoader/main.vue'
 
 const store = useStore()
 
 onMounted(()=>{
   store.dispatch("fetchDogs")
   store.dispatch("fetchDogs")
+})
 
-  window.onscroll = () => {
-    let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+    window.addEventListener("scroll", ()=> {
+    const {
+        scrollTop,
+        scrollHeight,
+        clientHeight
+    } = document.documentElement;
 
-    if (bottomOfWindow) {
+    if (scrollTop + clientHeight >= scrollHeight - 5 && !store.state.searchDog) {
       store.dispatch("fetchDogs")
     }
-  };
-})
+    }, {passive:true})
+
+  
 
 </script>
 
 <template>
+    <SearchComponent/>
+
     <div class="images_cont">
       <DogImage v-for="(dog, index) in store.state.dogs" :key="dog" :src="dog" :index="index"/>
     </div>
-    <div v-if="store.state.loadingDogs">Loading Images</div>
+
+    <div v-if="store.state.loadingDogs">
+        <DogLoader/>
+    </div>
 </template>
 
 <style scoped>
@@ -35,6 +48,7 @@ onMounted(()=>{
   margin:0px auto;
   gap:24px;
   width:100%;
+  margin-top:24px;
 }
 @media (min-width: 640px) {
     .images_cont {
@@ -56,6 +70,4 @@ onMounted(()=>{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 }
-
-
 </style>

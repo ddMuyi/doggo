@@ -1,7 +1,15 @@
 import type {State} from './state'
 
 export const SET_DOGS = (state:State, dogs:[])=>{
-    state.dogs = [...dogs, ...state.dogs]
+    state.dogs = [...state.dogs, ...dogs]
+}
+
+export const CLEAR_DOGS = (state:State)=>{
+    state.dogs = []
+}
+
+export const SET_SEARCH_DOG = (state:State, payload:string)=>{
+    state.searchDog = payload
 }
 
 export const SET_LOADING_DOGS = (state:State, payload:boolean)=>{

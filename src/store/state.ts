@@ -6,7 +6,8 @@ export default {
         loadingImage:false,
         loadingSubBreed:false
     },
-    loadingDogs:false
+    loadingDogs:false,
+    searchDog:""
 }
 
 export interface State{
@@ -17,5 +18,6 @@ export interface State{
         loadingImage:boolean,
         loadingSubBreed:boolean
     },
-    loadingDogs:boolean
+    loadingDogs:boolean,
+    searchDog:string
 }
